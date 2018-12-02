@@ -21,3 +21,13 @@ body {
 .row:hover {
   background-color: #383838;
 }
+
+.search {
+  display: block;
+  /* text-align: center; */
+  font-size: 48px;
+  padding: 20px;
+  margin: 1em auto;
+  border: 1px solid black;
+  font-family: 'Courier New', Courier, monospace;
+}

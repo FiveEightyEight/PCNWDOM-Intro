@@ -1,8 +1,7 @@
 const playlist = {
   name: 'United States Top 10',
   description: 'The top songs in the US right now.',
-  songs: [
-    {
+  songs: [{
       name: 'thank u, next',
       artists: ['Ariana Grande'],
       image: 'https://i.scdn.co/image/3492042deca1ed9a02e6d46ebe58807bbf8d2a51'
@@ -69,3 +68,83 @@ const playlist = {
     }
   ]
 };
+
+const render = (list) => {
+
+
+  const container = document.querySelector('.container');
+  container.innerHTML =
+    `<div class="jumbotron jumbotron-fluid title-background">
+  <h1 class="display-4">${list.name}</h1>
+  <p class="lead">${list.description}</p>
+  </div>
+<div class='song-list'>
+  ${list.songs.reduce( (acc, e) => {
+    acc += `<div class='row mb-2'>
+    <div class='col-1'>
+      <img src="${e.image}" class="rounded" style='width: 50px; height: 50px;'>
+    </div>
+    <div class='col-11'>
+      <p class='mb-0 mt-1 song-name'>${e.name}</p>
+      <p class='my-0 song-artists'>${e.artists}</p>
+    </div>
+  </div>`
+    return acc;
+  }, `
+  `)}
+</div>`;
+}
+
+render(playlist);
+
+const input = document.querySelector('.js-search');
+input.addEventListener('input', function(e){
+    let str = e.target.value;
+    search(str)
+  });
+
+const search = (str) => {
+  console.log(str);
+  const filteredList = {
+    name: 'United States Top 10',
+    description: 'The top songs in the US right now.',
+    songs: []
+   };
+  for(let i = 0; i < playlist.songs.length; i ++){
+    console.log(`str = ${str} | current song =${playlist.songs[i].name.toLocaleLowerCase()} `)
+    if(playlist.songs[i].name.toLocaleLowerCase().includes(str.toLowerCase())){
+      filteredList.songs.push(playlist.songs[i])
+    }
+  }
+  console.log(filteredList);
+  render(filteredList)
+  
+  // receives string, searches playlist for song names containing name
+  //
+  /*
+  for(let i = 0; i < playlist.songs.length; i ++) {
+    let song = playlist.songs[i];
+
+    if (song.name)
+  }
+  
+  */
+}
+
+console.log()
+
+
+/*
+let results = [];
+if song.toLowerCase().includes( search.value.toLowerCase()  ) {
+  results.push(song.name)
+}
+ 
+
+*/
+
+/*
+input.addEventListener('input', function(e){
+console.log(e);
+});
+*/
